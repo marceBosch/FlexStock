@@ -36,7 +36,6 @@ downloadBtn.addEventListener('click', () => {
     downloadBtn.textContent = "Rendering Card...";
     downloadBtn.disabled = true;
 
-    // Pastikan font dan render siap
     setTimeout(() => {
         html2canvas(captureCard, {
             scale: 3, // Kualitas tinggi (High Resolution)
@@ -61,4 +60,3 @@ downloadBtn.addEventListener('click', () => {
 
 // Inisialisasi awal
 updatePreview();
-
