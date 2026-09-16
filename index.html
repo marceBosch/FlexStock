@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexStock // Advanced RWA Card Generator for Long.xyz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#05080f] text-[#e2e8f0] font-['JetBrains_Mono'] min-h-screen flex flex-col selection:bg-[#22c55e] selection:text-black">
+
+    <!-- Top Navbar -->
+    <header class="border-b border-[#22c55e]/20 bg-[#030509]/90 backdrop-blur sticky top-0 z-50 px-4 md:px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <img src="https://iili.io/nn15Z2S.md.jpg" alt="Logo" class="w-8 h-8 rounded-lg object-cover border border-[#22c55e]/40 shadow-[0_0_12px_rgba(34,197,94,0.3)]">
+            <div>
+                <span class="text-base md:text-lg font-bold tracking-wider text-white">FLEX<span class="text-[#22c55e]">STOCK</span></span>
+                <span class="block text-[9px] text-slate-400">Long.xyz RWA Suite</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <a href="https://x.com/marceBosch" target="_blank" class="hidden sm:inline-block text-xs text-slate-400 hover:text-[#22c55e] transition">
+                By <strong class="text-white">@marceBosch</strong>
+            </a>
+            <a href="https://app.long.xyz/" target="_blank" class="text-xs px-3 py-2 rounded-lg bg-[#22c55e] text-black font-bold hover:bg-[#16a34a] transition shadow-[0_0_15px_rgba(34,197,94,0.4)]">
+                Long.xyz ↗
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Panel: Advanced Controls -->
+        <section class="lg:col-span-5 bg-[#0b101d]/80 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl space-y-4 backdrop-blur">
+            <div>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#22c55e] mb-1 terminal-cursor">// Control Matrix</h2>
+                <p class="text-[11px] text-slate-400">Atur parameter pairing meme & ekuitas RWA secara real-time.</p>
+            </div>
+
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-slate-400 block mb-1">Meme Token Name</label>
+                    <input type="text" id="inputMeme" value="AI Inu ($AI)" 
+                        class="w-full bg-black/70 border border-slate-800 rounded-lg p-3 text-white focus:border-[#22c55e] focus:outline-none transition">
+                </div>
+
+                <div>
+                    <label class="text-slate-400 block mb-1">RWA Equity Asset</label>
+                    <select id="inputStock" class="w-full bg-black/70 border border-slate-800 rounded-lg p-3 text-white focus:border-[#22c55e] focus:outline-none transition">
+                        <option value="NVDA">NVIDIA (NVDA)</option>
+                        <option value="TSLA">Tesla (TSLA)</option>
+                        <option value="SPCX">SpaceX (SPCX)</option>
+                        <option value="AAPL">Apple (AAPL)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-slate-400 block mb-1">Simulated ROI / Multiplier</label>
+                    <input type="text" id="inputYield" value="+1,420.5% ROI" 
+                        class="w-full bg-black/70 border border-slate-800 rounded-lg p-3 text-[#22c55e] font-bold focus:border-[#22c55e] focus:outline-none transition">
+                </div>
+
+                <div>
+                    <label class="text-slate-400 block mb-1">Trader Handle</label>
+                    <input type="text" id="inputUser" value="@marceBosch" 
+                        class="w-full bg-black/70 border border-slate-800 rounded-lg p-3 text-purple-400 font-bold focus:border-[#22c55e] focus:outline-none transition">
+                </div>
+            </div>
+
+            <button id="downloadBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#22c55e] to-emerald-600 text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center space-x-2">
+                <span>Download Flex Card</span>
+            </button>
+        </section>
+
+        <!-- Right Panel: Live Card Preview -->
+        <section class="lg:col-span-7 flex flex-col items-center justify-center space-y-4">
+            <div class="w-full flex justify-between items-center px-2">
+                <span class="text-xs text-slate-400 uppercase tracking-widest">// Live Render Stream</span>
+                <span class="text-[10px] bg-[#22c55e]/10 text-[#22c55e] border border-[#22c55e]/30 px-2 py-0.5 rounded-full">Secure 1e18</span>
+            </div>
+
+            <!-- The Share Card -->
+            <div id="captureCard" class="w-full max-w-lg aspect-[16/10] bg-gradient-to-br from-[#090e1a] via-[#03050a] to-[#0e1610] border-2 border-[#22c55e]/30 rounded-2xl p-6 md:p-8 shadow-2xl relative flex flex-col justify-between overflow-hidden">
+                
+                <!-- Glowing Ambient Lights -->
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-[#22c55e]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Card Header -->
+                <div class="flex justify-between items-center z-10">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://iili.io/nn15Z2S.md.jpg" alt="Logo" class="w-9 h-9 rounded-xl object-cover border border-[#22c55e]/40 shadow">
+                        <div>
+                            <h3 class="font-bold tracking-wider text-[#22c55e] text-sm">FLEXSTOCK</h3>
+                            <span class="text-[9px] text-slate-400">Long.xyz RWA Vault</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span id="previewUser" class="text-xs font-bold text-purple-400">@marceBosch</span>
+                        <span class="block text-[8px] text-slate-500">Robinhood Chain</span>
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="my-auto py-2 z-10 space-y-2">
+                    <div class="text-[9px] uppercase tracking-widest text-slate-400">Active RWA Pairing Hub</div>
+                    <div class="flex items-center justify-between bg-black/50 border border-slate-800/80 rounded-xl p-4 backdrop-blur">
+                        <div>
+                            <div class="text-[10px] text-slate-400">Meme Token</div>
+                            <div id="previewMeme" class="text-base md:text-lg font-bold text-white tracking-wide">AI Inu ($AI)</div>
+                        </div>
+                        <div class="text-[#22c55e] font-bold text-lg animate-pulse">⚡</div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400">Equity Asset</div>
+                            <div id="previewStock" class="text-base md:text-lg font-bold text-[#22c55e] tracking-wide">NVDA</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="flex justify-between items-end border-t border-slate-800/60 pt-3 z-10">
+                    <div>
+                        <div class="text-[9px] text-slate-400">Simulated Synergy ROI</div>
+                        <div id="previewYield" class="text-lg md:text-xl font-bold text-[#22c55e] tracking-tight">+1,420.5% ROI</div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[8px] text-slate-500 block">app.long.xyz/vault</span>
+                        <span class="text-[8px] text-[#22c55e]/80 font-mono">#1e18_factory</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 text-center py-4 text-xs text-slate-500">
+        FlexStock // Advanced Builder <a href="https://x.com/marceBosch" target="_blank" class="text-[#22c55e] hover:underline">@marceBosch</a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
